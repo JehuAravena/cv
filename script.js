@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyTheme = (theme) => {
     if (theme === "dark") {
       body.classList.add("dark-mode");
-      themeToggle.innerHTML = sunIcon;
+      if (themeToggle) themeToggle.innerHTML = sunIcon;
     } else {
       body.classList.remove("dark-mode");
-      themeToggle.innerHTML = moonIcon;
+      if (themeToggle) themeToggle.innerHTML = moonIcon;
     }
   };
 
@@ -23,13 +23,45 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   applyTheme(currentTheme);
 
-  themeToggle.addEventListener("click", () => {
-    if (body.classList.contains("dark-mode")) {
-      applyTheme("light");
-      localStorage.setItem("theme", "light");
-    } else {
-      applyTheme("dark");
-      localStorage.setItem("theme", "dark");
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const newTheme = body.classList.contains("dark-mode") ? "light" : "dark";
+      applyTheme(newTheme);
+      localStorage.setItem("theme", newTheme);
+    });
+  }
+
+  const secretCode = "tema";
+  let typedSequence = "";
+
+  document.addEventListener("keydown", (e) => {
+    if (
+      document.activeElement &&
+      (document.activeElement.tagName === "INPUT" ||
+        document.activeElement.tagName === "TEXTAREA")
+    ) {
+      return;
+    }
+
+    if (e.key.length === 1 && e.key.match(/[a-z0-9]/i)) {
+      typedSequence += e.key.toLowerCase();
+
+      if (typedSequence.length > secretCode.length) {
+        typedSequence = typedSequence.substring(
+          typedSequence.length - secretCode.length
+        );
+      }
+
+      if (typedSequence === secretCode) {
+        const newTheme = body.classList.contains("dark-mode")
+          ? "light"
+          : "dark";
+        applyTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+        typedSequence = "";
+      }
+    } else if (e.key === "Escape") {
+      typedSequence = "";
     }
   });
 

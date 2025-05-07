@@ -342,3 +342,13 @@ body.dark-mode footer {
     font-size: 1.1em;
   }
 }
+
+@media print {
+  a[href^="http"]::after {
+    content: "(" attr(href) ")";
+    font-size: 0.8em;
+    color: #aaaaaa !important;
+    font-style: italic;
+    display: block;
+  }
+}
