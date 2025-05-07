@@ -1,0 +1,328 @@
+:root {
+    --primary-font: 'Roboto', sans-serif;
+    --secondary-font: 'Lato', sans-serif;
+
+    --sidebar-bg: #2c3e50; /* Azul oscuro/gris para sidebar */
+    --sidebar-text: #ecf0f1; /* Texto claro para sidebar */
+    --sidebar-accent: #3498db; /* Azul brillante para acentos en sidebar */
+
+    --main-bg: #ffffff;
+    --main-text: #333333;
+    --main-headings: #2c3e50;
+    --accent-color: #3498db; /* Azul brillante */
+    --border-color: #e0e0e0;
+    --link-color: #3498db;
+    --link-hover-color: #2980b9;
+
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+body.dark-mode {
+    --sidebar-bg: #1e272e;
+    --sidebar-text: #bdc3c7;
+    --sidebar-accent: #3498db;
+
+    --main-bg: #282c34; /* Fondo oscuro para contenido principal */
+    --main-text: #abb2bf; /* Texto más claro */
+    --main-headings: #ecf0f1; /* Encabezados claros */
+    --accent-color: #3498db;
+    --border-color: #444a54;
+    --link-color: #5dade2;
+    --link-hover-color: #85c1e9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--secondary-font);
+    line-height: 1.7;
+    background-color: var(--main-bg); /* Fondo general, podría ser un gris muy claro */
+    color: var(--main-text);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.cv-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo del CV */
+    margin: 20px auto; /* Centrado y con margen */
+    background-color: var(--main-bg);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    overflow: hidden; /* Para que los bordes redondeados afecten a los hijos */
+    flex-grow: 1;
+}
+
+/* --- Sidebar (Columna Izquierda) --- */
+.sidebar {
+    width: 35%; /* Ancho de la columna lateral */
+    max-width: 380px; /* Máximo para que no sea demasiado ancha en pantallas grandes */
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    padding: 30px 25px;
+    font-size: 0.95em;
+}
+
+.sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espacio entre secciones del sidebar */
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.profile-header h1 {
+    font-family: var(--primary-font);
+    font-weight: 700;
+    font-size: 2em;
+    color: #fff; /* Nombre destacado en blanco */
+    margin-bottom: 5px;
+}
+
+.profile-header h2 {
+    font-family: var(--primary-font);
+    font-weight: 400;
+    font-size: 1.1em;
+    color: var(--sidebar-accent);
+    margin-bottom: 0;
+}
+
+.sidebar-section h3 {
+    font-family: var(--primary-font);
+    font-weight: 500;
+    font-size: 1.2em;
+    color: var(--sidebar-accent);
+    border-bottom: 1px solid var(--sidebar-accent);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-section h3 .icon {
+    margin-right: 10px;
+    font-size: 1.1em;
+}
+
+.contact-info p {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+}
+
+.contact-info .icon-sm {
+    color: var(--sidebar-accent);
+    margin-right: 12px;
+    width: 16px;
+    text-align: center;
+}
+
+.contact-info a {
+    color: var(--sidebar-text);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: var(--sidebar-accent);
+    text-decoration: underline;
+}
+
+.sidebar-section ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.sidebar-section ul li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+.sidebar-section ul li strong {
+    color: var(--sidebar-text); /* Hacer el strong más visible en el sidebar */
+}
+body.dark-mode .sidebar-section ul li strong {
+    color: #e0e0e0;
+}
+
+
+/* --- Main Content (Columna Derecha) --- */
+.main-content {
+    width: 65%;
+    padding: 30px 40px;
+    background-color: var(--main-bg);
+    position: relative; /* Para el botón de tema */
+    transition: background-color 0.3s;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--main-text); /* Ajustar color al tema */
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 20px; /* Más redondeado */
+    font-size: 1.1em;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    z-index: 10;
+}
+body.dark-mode #theme-toggle {
+    color: var(--sidebar-text); /* Texto claro para el botón en modo oscuro */
+}
+
+#theme-toggle:hover {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+
+.main-content section {
+    margin-bottom: 35px;
+}
+
+.main-content section:last-of-type {
+    margin-bottom: 0;
+}
+
+.main-content h2 {
+    font-family: var(--primary-font);
+    font-weight: 700;
+    font-size: 1.6em;
+    color: var(--main-headings);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.main-content h2 .icon-main {
+    margin-right: 12px;
+    font-size: 0.9em; /* Hacerlo un poco más pequeño que el texto del h2 */
+    color: var(--accent-color);
+}
+
+
+.job, .education {
+    margin-bottom: 25px;
+}
+.job:last-child, .education:last-child {
+    margin-bottom: 0;
+}
+
+
+.job h4, .education h4 {
+    font-family: var(--primary-font);
+    font-weight: 500;
+    font-size: 1.2em;
+    color: var(--main-text);
+    margin-bottom: 3px;
+}
+
+.company-info, .education p:not(:first-child) /* Para no afectar el nombre de la institución si está en p */ {
+    font-style: italic;
+    color: #555;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+}
+body.dark-mode .company-info, body.dark-mode .education p:not(:first-child) {
+    color: #999;
+}
+.education p { /* Para el nombre de la institución y fechas */
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+
+.main-content ul {
+    list-style: none; /* Ya estaba, pero para asegurar */
+    padding-left: 5px; /* Un poco de indentación */
+}
+
+.main-content ul li {
+    margin-bottom: 8px;
+    padding-left: 20px; /* Espacio para el bullet personalizado */
+    position: relative;
+}
+
+.main-content ul li::before {
+    content: '›'; /* Usar un chevron o similar */
+    color: var(--accent-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1.4em; /* Hacer el bullet un poco más grande */
+    top: -3px; /* Ajuste vertical */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--sidebar-bg); /* Consistente con el sidebar */
+    color: var(--sidebar-text);
+    font-size: 0.9em;
+    width: 100%;
+}
+body.dark-mode footer {
+     background-color: var(--sidebar-bg); /* Mismo que el sidebar en dark mode */
+     color: var(--sidebar-text);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 40%;
+    }
+    .main-content {
+        width: 60%;
+    }
+    .profile-header h1 { font-size: 1.8em; }
+    .profile-header h2 { font-size: 1em; }
+    .main-content h2 { font-size: 1.4em; }
+}
+
+
+@media (max-width: 768px) {
+    .cv-container {
+        flex-direction: column;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .sidebar, .main-content {
+        width: 100%;
+        max-width: none;
+    }
+    .sidebar {
+        padding: 25px;
+    }
+    .main-content {
+        padding: 25px;
+    }
+    #theme-toggle {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar { padding: 20px; }
+    .main-content { padding: 20px; }
+    .profile-header h1 { font-size: 1.6em; }
+    .sidebar-section h3 { font-size: 1.1em; }
+    .main-content h2 { font-size: 1.3em; }
+    .job h4, .education h4 { font-size: 1.1em; }
+}
