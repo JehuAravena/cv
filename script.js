@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("theme-toggle");
   const body = document.body;
-  const sunIcon = '<i class="fas fa-sun"></i>';
-  const moonIcon = '<i class="fas fa-moon"></i>';
+//   const sunIcon = '<i class="fas fa-sun"></i>';
+//   const moonIcon = '<i class="fas fa-moon"></i>';
 
   const applyTheme = (theme) => {
     if (theme === "dark") {
       body.classList.add("dark-mode");
-      if (themeToggle) themeToggle.innerHTML = sunIcon;
+    //   if (themeToggle) themeToggle.innerHTML = sunIcon;
     } else {
       body.classList.remove("dark-mode");
-      if (themeToggle) themeToggle.innerHTML = moonIcon;
+    //   if (themeToggle) themeToggle.innerHTML = moonIcon;
     }
   };
 
